@@ -1,0 +1,31 @@
+{
+  "timezone": "Asia/Tokyo",
+  "database_path": "life.db",
+  "random_seed": 2501,
+  "rhythm": {
+    "preferred_sleep_hour": 23.5,
+    "preferred_wake_hour": 7.5,
+    "sleep_pressure_awake_tau_hours": 16.0,
+    "sleep_pressure_sleep_tau_hours": 4.0
+  },
+  "profile": {
+    "social_reward": 0.5,
+    "creative_reward": 0.5,
+    "achievement_reward": 0.5,
+    "novelty_reward": 0.5,
+    "persistence": 0.5,
+    "impulsivity": 0.5
+  },
+  "affect_baseline": {
+    "valence": 0,
+    "arousal": 35,
+    "stress": 20,
+    "half_life_hours": 6.0
+  },
+  "tuning": {
+    "decision_noise": 3.0,
+    "switch_threshold": 12.0,
+    "interrupt_threshold": 0.35
+  },
+  "schedule": []
+}

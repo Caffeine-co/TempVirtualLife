@@ -3,7 +3,10 @@ from nonebot.adapters.onebot.v11.adapter import Adapter as ONEBOT_V11Adapter  # 
 
 # 初始化 NoneBot
 nonebot.init(
-    ...
+    host = "0.0.0.0",
+    port = 8080,
+    command_start = {"/"},
+    command_sep = {"."}
 )
 
 # 注册适配器

@@ -5,7 +5,7 @@ from zoneinfo import ZoneInfo
 
 
 class RealClock:
-    """生产环境使用的真实时钟。"""
+    """生产环境时钟。Runtime 只通过这个对象获取“现在几点”。"""
 
     def __init__(self, timezone: str):
         self._tz = ZoneInfo(timezone)
@@ -15,7 +15,7 @@ class RealClock:
 
 
 class SimulationClock:
-    """测试/高速模拟使用的可手动推进时钟。"""
+    """测试和高速模拟时钟。它让几天生命可以在几秒内跑完。"""
 
     def __init__(self, current: datetime):
         if current.tzinfo is None:

@@ -8,7 +8,7 @@ from .runtime import LifeRuntime
 
 
 def build_life_runtime(config: LifeConfig, clock=None) -> LifeRuntime:
-    """集中创建 Runtime，避免业务代码到处 new 各种组件。"""
+    """集中构建依赖，外部业务不需要手工 new 每个服务。"""
 
     if clock is None:
         clock = RealClock(config.timezone)

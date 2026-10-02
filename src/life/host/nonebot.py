@@ -2,12 +2,9 @@ from __future__ import annotations
 
 
 def mount_to_nonebot(runtime) -> None:
-    """把 LifeRuntime 挂到 NoneBot 生命周期。
+    """让 NoneBot 只负责 Host 生命周期，不侵入 LifeKernel。"""
 
-    这个文件是 Life Core 中唯一需要知道 NoneBot 存在的地方之一。
-    Kernel / Runtime 本身都不 import NoneBot。
-    """
-
+    # 延迟 import，确保单独运行 Life Core 时不需要安装/初始化 NoneBot。
     from nonebot import get_driver
 
     driver = get_driver()

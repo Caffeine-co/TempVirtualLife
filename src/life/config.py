@@ -6,7 +6,7 @@ from .models import LifeConfig
 
 
 def load_life_config(path: str | Path) -> LifeConfig:
-    """读取 JSON 配置。"""
+    """从 JSON 读取并严格校验 LifeConfig。"""
 
     text = Path(path).read_text(encoding="utf-8")
     return LifeConfig.model_validate_json(text)

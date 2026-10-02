@@ -13,7 +13,7 @@ async def run() -> None:
     with tempfile.TemporaryDirectory() as temp_dir:
         db = str(Path(temp_dir) / "life.db")
         tz = ZoneInfo("Asia/Tokyo")
-        clock = SimulationClock(datetime(2026, 10, 1, 22, 0, tzinfo=tz))
+        clock = SimulationClock(datetime(2026, 10, 5, 22, 0, tzinfo=tz))
         config = LifeConfig(database_path=db, random_seed=42)
 
         runtime1 = build_life_runtime(config, clock=clock)
@@ -21,7 +21,6 @@ async def run() -> None:
         before = await runtime1.get_state()
         await runtime1.stop()
 
-        # 模拟整个 Python / NoneBot 进程关闭 8 小时。
         clock.advance(timedelta(hours=8))
 
         runtime2 = build_life_runtime(config, clock=clock)
@@ -30,12 +29,10 @@ async def run() -> None:
 
         assert recovered.as_of == clock.now()
         assert recovered.revision > before.revision
-        assert recovered.action is not None
-
+        assert recovered.character.action is not None
         await runtime2.stop()
-
-    print("recovery_test: PASS")
 
 
 if __name__ == "__main__":
     asyncio.run(run())
+    print("recovery_test: PASS")

@@ -11,8 +11,7 @@ async def main() -> None:
     runtime = build_life_runtime(config)
     await runtime.start()
 
-    view = await runtime.get_view()
-    print(view.model_dump_json(indent=2))
+    print((await runtime.get_view()).model_dump_json(indent=2))
     print("LifeRuntime 已启动。Ctrl+C 结束。")
 
     try:

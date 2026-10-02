@@ -2,6 +2,44 @@
   "timezone": "Asia/Tokyo",
   "database_path": "life.db",
   "random_seed": 2501,
+  "initial": {
+    "spatial": {
+      "place_id": "home",
+      "zone_id": null,
+      "anchor_id": null,
+      "position": null,
+      "posture": "standing",
+      "locomotion": "idle"
+    },
+    "body": {
+      "energy": 65,
+      "physical_fatigue": 25,
+      "sleep_pressure": 30,
+      "sleep_debt": 20,
+      "hunger": 30,
+      "hydration": 75,
+      "pain": 0,
+      "physiological_arousal": 40,
+      "sensory_load": 20
+    },
+    "cognition": {
+      "cognitive_load": 20,
+      "rumination": 15
+    },
+    "affect": {
+      "valence": 0,
+      "arousal": 40,
+      "stress": 20,
+      "emotions": []
+    },
+    "drives": {
+      "social_need": 35,
+      "social_energy": 70,
+      "creative_urge": 45,
+      "achievement_urge": 45,
+      "novelty_urge": 35
+    }
+  },
   "rhythm": {
     "preferred_sleep_hour": 23.5,
     "preferred_wake_hour": 7.5,
@@ -14,7 +52,9 @@
     "achievement_reward": 0.5,
     "novelty_reward": 0.5,
     "persistence": 0.5,
-    "impulsivity": 0.5
+    "impulsivity": 0.5,
+    "routine_preference": 0.5,
+    "autonomy_preference": 0.5
   },
   "affect_baseline": {
     "valence": 0,
@@ -22,10 +62,93 @@
     "stress": 20,
     "half_life_hours": 6.0
   },
-  "tuning": {
-    "decision_noise": 3.0,
-    "switch_threshold": 12.0,
-    "interrupt_threshold": 0.35
+  "habit": {
+    "learning_rate": 0.08,
+    "half_life_days": 30,
+    "max_weight": 0.45
   },
-  "schedule": []
+  "memory": {
+    "max_records": 300,
+    "half_life_days": 14
+  },
+  "tuning": {
+    "decision_noise": 2.5,
+    "switch_threshold": 10,
+    "interrupt_threshold": 0.35,
+    "goal_directed_base_weight": 0.7,
+    "maximum_kernel_steps": 10000
+  },
+  "world": {
+    "places": [
+      {
+        "place_id": "home",
+        "name": "Home",
+        "default_environment": {
+          "noise": 15,
+          "crowding": 5,
+          "privacy": 90,
+          "comfort": 80,
+          "temperature_c": 22,
+          "light": 60
+        },
+        "links": [
+          {
+            "to_place_id": "work_area",
+            "minutes": 25,
+            "bidirectional": true
+          }
+        ]
+      },
+      {
+        "place_id": "work_area",
+        "name": "Work Area",
+        "default_environment": {
+          "noise": 35,
+          "crowding": 35,
+          "privacy": 35,
+          "comfort": 65,
+          "temperature_c": 22,
+          "light": 75
+        },
+        "links": []
+      }
+    ]
+  },
+  "schedule": [
+    {
+      "name": "morning_work",
+      "weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "start": "09:00:00",
+      "end": "12:00:00",
+      "action_type": "work",
+      "place_id": "work_area",
+      "mode": "hard",
+      "weight": 1.0
+    },
+    {
+      "name": "afternoon_create",
+      "weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": "14:00:00",
+      "end": "16:00:00",
+      "action_type": "create",
+      "place_id": null,
+      "mode": "soft",
+      "weight": 0.75
+    }
+  ],
+  "home_place_id": "home"
 }
